@@ -1,0 +1,13 @@
+{
+  "name": "express-api-template",
+  "version": "1.0.0",
+  "description": "NodeJS simple Express API template",
+  "main": "src/index.js",
+  "repository": "https://github.com/developerdavi/express-api-template",
+  "author": "Davi Rodrigues <developer.davi@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
