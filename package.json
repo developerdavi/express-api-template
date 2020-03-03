@@ -7,6 +7,10 @@
   "author": "Davi Rodrigues <developer.davi@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start": "node ./src",
+    "dev": "nodemon ./src"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1"
