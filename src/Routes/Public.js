@@ -2,8 +2,10 @@ const express = require('express')
 const publicRouter = express.Router()
 
 // CONTROLLERS
-const DefaultController = require('../Controllers/Default')
+const UserController = require('../Controllers/User')
 
-publicRouter.get('/', DefaultController.index)
+// USERS
+publicRouter.get('/users', UserController.index)
+publicRouter.post('/user', UserController.create)
 
 module.exports = publicRouter
