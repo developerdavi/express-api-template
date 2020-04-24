@@ -40,13 +40,11 @@ const userSchema = new mongoose.Schema({
 userSchema.statics.findByCredentials = async (username, password) => {
   const user = await User.findOne({ username })
   
-  // CHECK IF USER EXISTS
   if (!user) 
     throw new Error({ error: 'User not found' })
 
   const isPasswordMatch = await bcrypt.compare(password, user.password)
 
-  // CHECK IF PASSWORD MATCHES THE HASH STORED IN DATABASE
   if (!isPasswordMatch)
     throw new Error({ error: 'Invalid password' })
 
@@ -56,26 +54,20 @@ userSchema.statics.findByCredentials = async (username, password) => {
 userSchema.methods.generateAuthToken = async function() {
   const user = this
 
-  // GENERATES JWT TOKEN
   const token = jwt.sign({ _id: user.id }, settings.JWT_KEY)
 
-  // STORES TOKEN IN USER DATABASE ENTRY
   user.tokens = user.tokens.concat({ token })
 
   await user.save()
 
-  // RETURNS THE TOKEN AS WELL
   return token
 }
 
 userSchema.pre('save', async function(next) {
   const user = this
 
-  // CHECK IF THE PASSWORD HAS BEEN CREATED OR CHANGED
-  if (user.isModified('password')) {
-    // GENERATE A HASH TO SECURELY STORE PASSWORD
+  if (user.isModified('password'))
     user.password = await bcrypt.hash(user.password, 8)
-  }
 
   next()
 })
