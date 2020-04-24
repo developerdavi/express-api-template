@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 })
 
-userSchema.statics.findByCredetials = async (username, password) => {
+userSchema.statics.findByCredentials = async (username, password) => {
   const user = await User.findOne({ username })
   
   // CHECK IF USER EXISTS
