@@ -8,6 +8,9 @@ module.exports = {
       useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
     }).then(() => {
       console.log('[ SERVER INFO ] DATABASE CONNECTED')
+    }).catch((error) => {
+      console.log('[ SERVER INFO ] DATABASE CONNECTION ERROR')
+      console.log(error)
     })
   }
 }
